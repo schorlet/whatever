@@ -1,0 +1,53 @@
+.box {
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: brown;
+    margin-bottom: 1em;
+}
+
+.header {
+    /*background-color: brown;*/
+    border-width: 0px 0px 1px;
+    border-style: solid;
+    border-color: brown;
+    padding: 4px 2px;
+}
+.header label {
+    color: darkgreen;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.content {
+    padding: 4px 2px;
+}
+.content p {
+    margin: 0 auto;
+    width: 80%;
+}
+.content label {
+    color: darkgreen;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    padding: 2px;
+}
+.content input {
+    font-size: small;
+    color: #222;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    display: block;
+    padding: 3px;
+}
+.content input[type=text] {
+    background-color: lightgray;
+    margin: 0 auto;
+    width: 80%;
+}

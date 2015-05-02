@@ -1,0 +1,26 @@
+.tile {
+    border-width: 2px 0px 0px;
+    border-style: solid;
+    border-color: darkgreen;
+    margin-bottom: 1em;
+}
+.title {
+    border-width: 0px 1px 0px;
+    border-style: solid;
+    border-color: brown;
+    padding: 4px 8px;
+    color: darkgreen;
+    font-weight: bold;
+}
+.content {
+    border-width: 0px 1px 0px;
+    border-style: solid;
+    border-color: brown;
+    padding: 4px 8px;
+}
+.tags {
+    border-width: 0px 1px 1px;
+    border-style: solid;
+    border-color: brown;
+    padding: 4px 8px;
+}
