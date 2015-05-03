@@ -6,7 +6,7 @@
     <template>
         <tile-model id="model" items="{{items}}"></tile-model>
 
-        <template repeat="{{items}}">
+        <template repeat="{{filtered}}">
             <tile-item item="{{}}"></tile-item>
         </template>
     </template>
@@ -14,6 +14,29 @@
     Polymer({
         created: function() {
             this.items = [];
+            this.filtered = [];
+        },
+
+        itemsChanged: function() {
+            this.filtered = this.items;
+        },
+
+        attached: function() {
+            document.addEventListener('filter', this.onFilter.bind(this));
+        },
+
+        detached: function() {
+            document.removeEventListener('filter', this.onFilter);
+        },
+
+        onFilter: function(e) {
+            var filter = e.detail;
+            var re = new RegExp('.*'+filter+'.*', 'i');
+
+            this.filtered = this.items.filter(function(elem) {
+                return elem.title.match(re) != null
+                    || elem.description.match(re) != null;
+            });
         }
     });
     </script>

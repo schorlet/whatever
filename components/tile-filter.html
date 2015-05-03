@@ -9,11 +9,15 @@
                 <label>Filter content</label>
             </div>
             <div class="content">
-                <input type="text" name="filter">
+                <input type="text"on-keyup="{{onKeyup}}">
             </div>
         </div>
     </template>
     <script>
-        Polymer({});
+    Polymer({
+        onKeyup: function(e, detail, sender) {
+            this.fire('filter', sender.value);
+        }
+    });
     </script>
 </polymer-element>
