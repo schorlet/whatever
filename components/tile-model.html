@@ -1,0 +1,18 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="tile-model" hidden attributes="items">
+    <template>
+        <core-ajax auto url="../tiles.json"
+            handleAs="json"
+            response="{{items}}">
+        </core-ajax>
+    </template>
+    <script>
+    Polymer({
+        created: function() {
+            this.items = [];
+        }
+    });
+    </script>
+</polymer-element>

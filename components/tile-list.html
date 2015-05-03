@@ -1,0 +1,20 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="tile-item.html">
+<link rel="import" href="tile-model.html">
+
+<polymer-element name="tile-list">
+    <template>
+        <tile-model id="model" items="{{items}}"></tile-model>
+
+        <template repeat="{{items}}">
+            <tile-item item="{{}}"></tile-item>
+        </template>
+    </template>
+    <script>
+    Polymer({
+        created: function() {
+            this.items = [];
+        }
+    });
+    </script>
+</polymer-element>
