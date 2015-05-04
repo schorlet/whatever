@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="tile-filter">
+<polymer-element name="tile-filter" attributes="filter">
     <template>
         <link rel="stylesheet" href="box.css">
 
@@ -9,15 +9,11 @@
                 <label>Filter content</label>
             </div>
             <div class="content">
-                <input type="text"on-keyup="{{onKeyup}}">
+                <input type="text" value="{{filter}}">
             </div>
         </div>
     </template>
     <script>
-    Polymer({
-        onKeyup: function(e, detail, sender) {
-            this.fire('filter', sender.value);
-        }
-    });
+    Polymer();
     </script>
 </polymer-element>

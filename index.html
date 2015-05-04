@@ -13,13 +13,15 @@
     <body unresolved>
         <div class="tiles">
             <h1>Frontend challenge solution</h1>
-            <div class="left">
-                <tile-list></tile-list>
-            </div>
-            <div class="right">
-                <tile-filter></tile-filter>
-                <tile-create></tile-create>
-            </div>
+            <template is="auto-binding">
+                <div class="left">
+                    <tile-list filter="{{filter}}"></tile-list>
+                </div>
+                <div class="right">
+                    <tile-filter filter="{{filter}}"></tile-filter>
+                    <tile-create></tile-create>
+                </div>
+            </template>
             <div class="clear"></div>
         </div>
         <div>

@@ -2,7 +2,7 @@
 <link rel="import" href="tile-item.html">
 <link rel="import" href="tile-model.html">
 
-<polymer-element name="tile-list">
+<polymer-element name="tile-list" attributes="filter">
     <template>
         <tile-model id="model" items="{{items}}"></tile-model>
 
@@ -21,17 +21,8 @@
             this.filtered = this.items;
         },
 
-        attached: function() {
-            document.addEventListener('filter', this.onFilter.bind(this));
-        },
-
-        detached: function() {
-            document.removeEventListener('filter', this.onFilter);
-        },
-
-        onFilter: function(e) {
-            var filter = e.detail;
-            var re = new RegExp('.*'+filter+'.*', 'i');
+        filterChanged: function() {
+            var re = new RegExp(this.filter, 'i');
 
             this.filtered = this.items.filter(function(elem) {
                 return elem.title.match(re) != null
