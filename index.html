@@ -6,6 +6,7 @@
         <title>whatever-company/challenge</title>
         <link rel="stylesheet" href="layout.css">
         <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="bower_components/flatiron-director/flatiron-director.html">
         <link rel="import" href="components/tile-filter.html">
         <link rel="import" href="components/tile-create.html">
         <link rel="import" href="components/tile-list.html">
@@ -14,6 +15,7 @@
         <div class="tiles">
             <h1>Frontend challenge solution</h1>
             <template is="auto-binding">
+                <flatiron-director route="{{filter}}" autoHash></flatiron-director>
                 <div class="left">
                     <tile-list filter="{{filter}}"></tile-list>
                 </div>

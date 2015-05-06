@@ -18,13 +18,18 @@
         },
 
         itemsChanged: function() {
-            this.filtered = this.items;
+            this.applyChanges();
         },
 
         filterChanged: function() {
-            var re = new RegExp(this.filter, 'i');
+            this.applyChanges();
+        },
 
-            this.filtered = this.items.filter(function(elem) {
+        applyChanges: function() {
+            var re = new RegExp(this.filter, 'i');
+            var items = this.items || [];
+
+            this.filtered = items.filter(function(elem) {
                 return elem.title.match(re) != null
                     || elem.description.match(re) != null;
             });
