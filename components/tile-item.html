@@ -1,22 +1,38 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="tile-item" attributes="item">
+<polymer-element name="tile-item" attributes="item highlight">
     <template>
         <link rel="stylesheet" href="tile-item.css">
 
         <div class="tile">
-            <div class="title">{{item.title}}</div>
-            <div class="content">{{item.description}}</div>
-            <div class="tags">{{tagList(item.tags)}}</div>
+            <div id="title" class="title"></div>
+            <div id="description" class="description"></div>
+            <div class="tags">[[item.tags | names]]</div>
         </div>
     </template>
     <script>
     Polymer({
-        tagList: function(tags) {
-            var names = tags.map(function(tag) {
-                return tag.name;
-            });
-            return names.join(", ");
+        names: function(objs) {
+            return objs.map(function(obj) {
+                return obj.name;
+            }).join(", ");
+        },
+
+        highlightChanged: function() {
+            var title = this.color(this.item.title);
+            this.injectBoundHTML(title, this.$.title);
+
+            var description = this.color(this.item.description);
+            this.injectBoundHTML(description, this.$.description);
+        },
+
+        color: function(value) {
+            if (this.highlight) {
+                return value.replace(
+                    new RegExp('('+this.highlight+')','ig'),
+                    '<span style="background-color:yellow">$1</span>');
+            }
+            return value;
         }
     });
     </script>

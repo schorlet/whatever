@@ -6,8 +6,8 @@
     <template>
         <tile-model id="model" items="{{items}}"></tile-model>
 
-        <template repeat="{{filtered}}">
-            <tile-item item="{{}}"></tile-item>
+        <template repeat="{{item in filtered}}">
+            <tile-item item="{{item}}" highlight="{{filter}}"></tile-item>
         </template>
     </template>
     <script>
