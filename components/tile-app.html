@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/flatiron-director/flatiron-director.html">
+<link rel="import" href="tile-filter.html">
+<link rel="import" href="tile-create.html">
+<link rel="import" href="tile-list.html">
+
+<polymer-element name="tile-app">
+    <template>
+        <link rel="stylesheet" href="tile-app.css">
+
+        <div class="tiles">
+            <h1>Frontend challenge solution</h1>
+            <flatiron-director route="{{filter}}" autoHash></flatiron-director>
+
+            <div class="left">
+                <tile-list filter="{{filter}}"></tile-list>
+            </div>
+
+            <div class="right">
+                <tile-filter filter="{{filter}}"></tile-filter>
+                <tile-create></tile-create>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </template>
+    <script>
+    Polymer();
+    </script>
+</polymer-element>

@@ -6,26 +6,10 @@
         <title>whatever-company/challenge</title>
         <link rel="stylesheet" href="layout.css">
         <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
-        <link rel="import" href="bower_components/flatiron-director/flatiron-director.html">
-        <link rel="import" href="components/tile-filter.html">
-        <link rel="import" href="components/tile-create.html">
-        <link rel="import" href="components/tile-list.html">
+        <link rel="import" href="components/tile-app.html">
     </head>
     <body unresolved>
-        <div class="tiles">
-            <h1>Frontend challenge solution</h1>
-            <template is="auto-binding">
-                <flatiron-director route="{{filter}}" autoHash></flatiron-director>
-                <div class="left">
-                    <tile-list filter="{{filter}}"></tile-list>
-                </div>
-                <div class="right">
-                    <tile-filter filter="{{filter}}"></tile-filter>
-                    <tile-create></tile-create>
-                </div>
-            </template>
-            <div class="clear"></div>
-        </div>
+        <tile-app></tile-app>
         <div>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

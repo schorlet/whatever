@@ -1,0 +1,22 @@
+.clear {
+    clear: both;
+}
+
+@media screen and (min-width:600px) {
+    .tiles {
+        margin: 0 auto;
+        max-width: 80%;
+    }
+    .left {
+        float: left;
+        width: 60%;
+    }
+    .right {
+        margin-left: 61%;
+    }
+}
+@media screen and (max-width:599px) {
+    .right {
+        display: inline;
+    }
+}
