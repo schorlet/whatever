@@ -2,10 +2,8 @@
 <link rel="import" href="tile-item.html">
 <link rel="import" href="tile-model.html">
 
-<polymer-element name="tile-list" attributes="filter">
+<polymer-element name="tile-list" attributes="items filter">
     <template>
-        <tile-model id="model" items="{{items}}"></tile-model>
-
         <template repeat="{{item in filtered}}">
             <tile-item item="{{item}}" highlight="{{filter}}"></tile-item>
         </template>

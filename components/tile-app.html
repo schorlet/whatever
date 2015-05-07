@@ -10,21 +10,27 @@
 
         <div class="tiles">
             <h1>Frontend challenge solution</h1>
+
             <flatiron-director route="{{filter}}" autoHash></flatiron-director>
+            <tile-model id="model" items="{{items}}"></tile-model>
 
             <div class="left">
-                <tile-list filter="{{filter}}"></tile-list>
+                <tile-list items="{{items}}" filter="{{filter}}"></tile-list>
             </div>
 
             <div class="right">
                 <tile-filter filter="{{filter}}"></tile-filter>
-                <tile-create></tile-create>
+                <tile-create on-create="{{createAction}}"></tile-create>
             </div>
 
             <div class="clear"></div>
         </div>
     </template>
     <script>
-    Polymer();
+    Polymer({
+        createAction: function(type, detail) {
+            this.$.model.createTile(detail);
+        }
+    });
     </script>
 </polymer-element>

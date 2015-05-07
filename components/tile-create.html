@@ -9,20 +9,27 @@
                 <label>Create content</label>
             </div>
             <div class="content">
-                <form>
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="title">
-                    <label for="tags">Tags</label>
-                    <input type="text" name="tags" id="tags">
-                    <label style="font-size:small; font-weight:normal;">Separate each tags by a space.</label>
-                    <p>
-                        <input type="submit" value="Submit">
-                    </p>
-                </form>
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+                <label for="tags">Tags</label>
+                <input type="text" name="tags" id="tags">
+                <label style="font-size:small; font-weight:normal;">Separate each tags by a space.</label>
+                <p>
+                    <input type="button" value="Submit" on-click="{{createTile}}">
+                </p>
             </div>
         </div>
     </template>
     <script>
-        Polymer({});
+    Polymer({
+        createTile: function() {
+            var newTile = {
+                "title": this.$.title.value,
+                "description": "",
+                "tags": [],
+            };
+            this.fire("create", newTile);
+        }
+    });
     </script>
 </polymer-element>
