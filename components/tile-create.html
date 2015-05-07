@@ -9,25 +9,38 @@
                 <label>Create content</label>
             </div>
             <div class="content">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title">
-                <label for="tags">Tags</label>
-                <input type="text" name="tags" id="tags">
-                <label style="font-size:small; font-weight:normal;">Separate each tags by a space.</label>
-                <p>
-                    <input type="button" value="Submit" on-click="{{createTile}}">
-                </p>
+                <form on-submit="{{createTile}}">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" required>
+                    <label for="tags">Tags</label>
+                    <input type="text" name="tags" id="tags">
+                    <label style="font-size:small; font-weight:normal;">Separate each tags by a space.</label>
+                    <p>
+                        <input type="submit" value="Submit">
+                    </p>
+                </form>
             </div>
         </div>
     </template>
     <script>
     Polymer({
-        createTile: function() {
+        createTile: function(e) {
+            e.preventDefault();
+
+            var tags = [];
+            if (this.$.tags.value) {
+                var names = this.$.tags.value.trim().split(" ");
+                tags = names.map(function(name) {
+                    return {"name": name};
+                });
+            }
+
             var newTile = {
                 "title": this.$.title.value,
                 "description": "",
-                "tags": [],
+                "tags": tags,
             };
+
             this.fire("create", newTile);
         }
     });
