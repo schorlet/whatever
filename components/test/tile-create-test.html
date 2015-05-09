@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="../../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../../bower_components/web-component-tester/browser.js"></script>
+    <link rel="import" href="../tile-list.html">
+    <link rel="import" href="../tile-create.html">
+    <style>
+    body {
+        background: #000;
+        color: gray;
+    }
+    </style>
+</head>
+<body>
+    <template is="auto-binding">
+        <tile-create id="create"></tile-create>
+        <tile-list id="list" filter="plop"></tile-list>
+    </template>
+
+    <script>
+    suite("<tile-create>", function() {
+        var list, create;
+
+        suiteSetup(function() {
+            list = document.querySelector("tile-list");
+            create = document.querySelector("tile-create");
+        });
+
+        teardown(function(done) {
+            list.items = [];
+            flush(done);
+        });
+
+        test("initial items", function() {
+            assert.isArray(list.filtered);
+            assert.lengthOf(list.filtered, 0);
+        });
+
+        test("submit raise event", function(done) {
+            var raised = false;
+
+            var listener = function(event) {
+                assert.isObject(event.detail);
+                assert.property(event.detail, "title");
+                assert.property(event.detail, "description");
+                assert.property(event.detail, "subtype");
+                assert.property(event.detail, "tags");
+                assert.isArray(event.detail.tags);
+                raised = true;
+            };
+            create.addEventListener('create', listener);
+
+            create.$.title.value = "title";
+            create.$.tags.value = "abc def";
+            create.$.submit.click();
+
+            flush(function() {
+                create.removeEventListener('create', listener);
+                assert.isTrue(raised);
+                done();
+            });
+        });
+
+        test("new tile is displayed", function(done) {
+            var raised = false;
+
+            var listener = function(event) {
+                assert.isObject(event.detail);
+                list.items.push(event.detail);
+
+                flush(function() {
+                    assert.lengthOf(list.filtered, 1);
+                    raised = true;
+                });
+            };
+            create.addEventListener('create', listener);
+
+            create.$.title.value = "plop";
+            create.$.tags.value = "abc def";
+            create.$.submit.click();
+
+            flush(function() {
+                create.removeEventListener('create', listener);
+                assert.isTrue(raised);
+                done();
+            });
+        });
+    });
+    </script>
+</body>
+</html>

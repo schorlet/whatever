@@ -47,6 +47,13 @@
             flush(function() {
                 assert.isArray(list.filtered);
                 assert.lengthOf(list.filtered, 1);
+
+                var hg = document.querySelector("tile-list").
+                    shadowRoot.querySelector("tile-item").
+                    shadowRoot.querySelector("#title span");
+                assert.isNotNull(hg);
+                assert.equal("js", hg.innerText);
+
                 done();
             });
         });
@@ -57,6 +64,13 @@
             flush(function() {
                 assert.isArray(list.filtered);
                 assert.lengthOf(list.filtered, 1);
+
+                var hg = document.querySelector("tile-list").
+                    shadowRoot.querySelector("tile-item").
+                    shadowRoot.querySelector("#description span");
+                assert.isNotNull(hg);
+                assert.equal("hr", hg.innerText);
+
                 done();
             });
         });

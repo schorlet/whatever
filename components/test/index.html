@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="../../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../../bower_components/web-component-tester/browser.js"></script>
+    <style>
+    body {
+        background: #000;
+        color: gray;
+    }
+    #mocha-stats em {
+        color: gray !important;
+    }
+    </style>
+</head>
+<body>
+    <script>
+    WCT.loadSuites([
+        "tile-filter-test.html",
+        "tile-create-test.html",
+    ]);
+    </script>
+</body>
+</html>
