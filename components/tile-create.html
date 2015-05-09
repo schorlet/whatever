@@ -11,9 +11,11 @@
             <div class="content">
                 <form on-submit="{{createTile}}">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" required>
+                    <input type="text" name="title" id="title" placeholder="Title" required>
+
                     <label for="tags">Tags</label>
-                    <input type="text" name="tags" id="tags">
+                    <input type="text" name="tags" id="tags" placeholder="Tags">
+
                     <label style="font-size:small; font-weight:normal;">Separate each tags by a space.</label>
                     <p>
                         <input type="submit" value="Submit">

@@ -46,7 +46,7 @@
     display: block;
     padding: 3px;
 }
-.content input[type=text] {
+.content input[type=text],input[type=search] {
     background-color: lightgray;
     margin: 0 auto;
     width: 80%;
