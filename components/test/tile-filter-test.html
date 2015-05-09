@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="../../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="../../bower_components/web-component-tester/browser.js"></script>
+    <link rel="import" href="../tile-list.html">
+    <link rel="import" href="../tile-filter.html">
+    <style>
+    body {
+        background: #000;
+        color: gray;
+    }
+    </style>
+</head>
+<body>
+    <template is="auto-binding">
+        <tile-filter id="filter" filter="{{filter}}"></tile-filter>
+
+        <tile-list id="list" filter="{{filter}}"
+            items='[{ "title":"json", "description":"chrome", "subtype":"test", "tags":[] }]'>
+        </tile-list>
+    </template>
+
+    <script>
+    suite("<tile-list>", function() {
+        var list, filter;
+
+        suiteSetup(function() {
+            list = document.querySelector("tile-list");
+            filter = document.querySelector("tile-filter");
+        });
+
+        teardown(function(done) {
+            filter.filter = "";
+            flush(done);
+        });
+
+        test("initial items", function() {
+            assert.isArray(list.filtered);
+            assert.lengthOf(list.filtered, 1);
+        });
+
+        test("filter matches title", function(done) {
+            filter.filter = "js";
+
+            flush(function() {
+                assert.isArray(list.filtered);
+                assert.lengthOf(list.filtered, 1);
+                done();
+            });
+        });
+
+        test("filter matches description", function(done) {
+            filter.filter = "hr";
+
+            flush(function() {
+                assert.isArray(list.filtered);
+                assert.lengthOf(list.filtered, 1);
+                done();
+            });
+        });
+
+        test("filter doesn't match", function(done) {
+            filter.filter = "gs";
+
+            flush(function() {
+                assert.isArray(list.filtered);
+                assert.lengthOf(list.filtered, 0);
+                done();
+            });
+        })
+    });
+    </script>
+</body>
+</html>

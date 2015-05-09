@@ -9,6 +9,8 @@
     </template>
     <script>
     Polymer({
+        filter: "",
+
         created: function() {
             this.items = [];
             this.filtered = [];
@@ -23,7 +25,7 @@
         },
 
         applyChanges: function() {
-            var re = new RegExp(this.filter, 'i');
+            var re = new RegExp(this.filter || "", 'i');
             var items = this.items || [];
 
             this.filtered = items.filter(function(elem) {
