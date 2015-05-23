@@ -1,45 +1,58 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
-	"os"
 )
 
 var BaseUrl = "https://api.twitter.com"
 
-func main() {
-	key := os.Getenv("CONSUMER_KEY")
-	secret := os.Getenv("CONSUMER_SECRET")
-
-	if key == "" || secret == "" {
-		log.Fatal("client: missing consumer credentials")
-	}
-
-	token, err := GetToken(key, secret)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	body, err := Search("#golang", token)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var out bytes.Buffer
-	json.Indent(&out, body, "", "\t")
-	out.WriteTo(os.Stdout)
+type Status struct {
+	Text      string `json:"text"`
+	Retweets  int    `json:"retweet_count"`
+	Favorites int    `json:"favorite_count"`
+	User      struct {
+		Name       string `json:"name"`
+		ScreenName string `json:"screen_name"`
+	} `json:"user"`
+	Retweet struct {
+		User struct {
+			Name       string `json:"name"`
+			ScreenName string `json:"screen_name"`
+		} `json:"user"`
+	} `json:"retweeted_status"`
+	Entities struct {
+		Tags []struct {
+			Text string `json:"text"`
+		} `json:"hashtags"`
+	} `json:"entities"`
 }
 
-func Search(query, token string) (body []byte, err error) {
+func Search(query, token string) (statuses []Status, err error) {
+	body, err := fetchQuery(query, token)
+	if err != nil {
+		return
+	}
+
+	var tweets struct {
+		Statuses []Status `json:"statuses"`
+	}
+
+	err = json.Unmarshal(body, &tweets)
+	if err != nil {
+		return
+	}
+
+	statuses = tweets.Statuses
+	return
+}
+
+func fetchQuery(query, token string) (body []byte, err error) {
 	q := url.Values{}
-	q.Set("count", "2")
-	q.Set("result_type", "popular")
-	q.Set("include_entities", "false")
+	q.Set("count", "5")
 	q.Set("q", query)
 
 	searchUrl := BaseUrl + "/1.1/search/tweets.json?" + q.Encode()
