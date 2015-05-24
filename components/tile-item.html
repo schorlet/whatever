@@ -4,7 +4,7 @@
     <template>
         <link rel="stylesheet" href="tile-item.css">
 
-        <div class="tile" style="border-color: [[item.subtype | borderColor]];">
+        <div class="tile">
             <div id="title" class="title">[[item.title]]</div>
             <div id="description" class="description">[[item.description]]</div>
             <div class="tags">[[item.tags | names]]</div>
@@ -16,26 +16,6 @@
 
         created: function() {
             this.item = {};
-        },
-
-        borderColor: function(subtype) {
-            var hash = this.fnv1a32(subtype);
-            hash = hash >>> 8;
-            var color = "#" + hash.toString(16);
-            return color;
-        },
-
-        fnv1a32: function(text) {
-            var hash = 2166136261;
-            if (text) {
-                for (var i = 0; i < text.length; i++) {
-                    var charCode = text.charCodeAt(i);
-                    hash = hash ^ charCode;
-                    hash += (hash<<1) + (hash<<4) + (hash<<7) + (hash<<8) + (hash<<24);
-                    hash = hash >>> 0;
-                }
-            }
-            return hash;
         },
 
         names: function(objs) {

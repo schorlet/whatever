@@ -1,25 +1,23 @@
 .tile {
-    border-width: 2px 0px 0px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: #2E79DB; /* blue */
     border-style: solid;
     margin-bottom: 1em;
 }
 .title {
-    border-width: 0px 1px 0px;
-    border-style: solid;
-    border-color: brown;
+    font-family: sans-serif;
     padding: 4px 8px;
-    color: darkgreen;
+    color: #2E79DB; /* blue */
     font-weight: bold;
 }
 .description {
-    border-width: 0px 1px 0px;
-    border-style: solid;
-    border-color: brown;
+    font-family: serif;
+    color: #7CB0FF; /* light blue */
     padding: 4px 8px;
 }
 .tags {
-    border-width: 0px 1px 1px;
-    border-style: solid;
-    border-color: brown;
+    font-family: monospace;
+    color: #9B51DB; /* violet */
     padding: 4px 8px;
 }

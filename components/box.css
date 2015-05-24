@@ -2,7 +2,7 @@
     border-radius: 3px;
     border-width: 1px;
     border-style: solid;
-    border-color: brown;
+    border-color: #939392; /* light gray */
     margin-bottom: 1em;
 }
 
@@ -10,11 +10,10 @@
     /*background-color: brown;*/
     border-width: 0px 0px 1px;
     border-style: solid;
-    border-color: brown;
+    border-color: #939392; /* light gray */
     padding: 4px 2px;
 }
 .header label {
-    color: darkgreen;
     font-weight: bold;
     display: block;
     margin: 0 auto;
@@ -29,7 +28,6 @@
     width: 80%;
 }
 .content label {
-    color: darkgreen;
     font-weight: bold;
     display: block;
     margin: 0 auto;
@@ -42,7 +40,7 @@
     border-radius: 3px;
     border-width: 1px;
     border-style: solid;
-    border-color: gray;
+    border-color: #939392; /* light gray */
     display: block;
     padding: 3px;
 }
