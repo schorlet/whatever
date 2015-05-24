@@ -1,0 +1,33 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="tile-search">
+    <template>
+        <link rel="stylesheet" href="box.css">
+
+        <div class="box">
+            <div class="header">
+                <label>Search content</label>
+            </div>
+            <div class="content">
+                <form on-submit="{{doSearch}}">
+                    <input type="text" name="search" id="search" placeholder="Search" required  autofocus>
+                    <p>
+                        <a target="_blank" href="https://dev.twitter.com/rest/public/search"
+                             style="font-size:small; font-weight:normal;">Query operators</a>
+                    </p>
+                    <p>
+                        <input id="submit" type="submit" value="Submit">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </template>
+    <script>
+    Polymer({
+        doSearch: function(e) {
+            e.preventDefault();
+            this.fire("search", this.$.search.value);
+        }
+    });
+    </script>
+</polymer-element>

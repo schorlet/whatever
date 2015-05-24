@@ -1,7 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/flatiron-director/flatiron-director.html">
 <link rel="import" href="tile-filter.html">
-<link rel="import" href="tile-create.html">
+<link rel="import" href="tile-search.html">
 <link rel="import" href="tile-model.html">
 <link rel="import" href="tile-list.html">
 
@@ -21,7 +21,7 @@
 
             <div class="right">
                 <tile-filter filter="{{filter}}"></tile-filter>
-                <tile-create on-create="{{createAction}}"></tile-create>
+                <tile-search on-search="{{doSearch}}"></tile-search>
             </div>
 
             <div class="clear"></div>
@@ -29,8 +29,8 @@
     </template>
     <script>
     Polymer({
-        createAction: function(type, detail) {
-            this.$.model.createTile(detail);
+        doSearch: function(type, detail) {
+            this.$.model.doSearch(detail);
         }
     });
     </script>

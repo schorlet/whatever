@@ -3,9 +3,10 @@
 
 <polymer-element name="tile-model" hidden attributes="items">
     <template>
-        <core-ajax auto url="../tiles.json"
+        <core-ajax id="ajax" url="/search"
             handleAs="json"
-            response="{{items}}">
+            on-core-response="{{handleResponse}}"
+            on-core-error="{{handleError}}">
         </core-ajax>
     </template>
     <script>
@@ -14,8 +15,18 @@
             this.items = [];
         },
 
-        createTile: function(item) {
-            this.items.push(item);
+        doSearch: function(detail) {
+            this.$.ajax.params = '{"q": "' + detail + '"}';
+            this.$.ajax.go();
+        },
+
+        handleResponse: function(event, detail) {
+            this.items = detail.response.statuses || [];
+        },
+
+        handleError: function(event, detail) {
+            console.log(detail);
+            this.items = [];
         }
     });
     </script>

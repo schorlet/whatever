@@ -5,9 +5,9 @@
         <link rel="stylesheet" href="tile-item.css">
 
         <div class="tile">
-            <div id="title" class="title">[[item.title]]</div>
-            <div id="description" class="description">[[item.description]]</div>
-            <div class="tags">[[item.tags | names]]</div>
+            <div id="title" class="title">[[item.user.screen_name]]</div>
+            <div id="description" class="description">[[item.text]]</div>
+            <div class="tags">[[item.entities.hashtags | names]]</div>
         </div>
     </template>
     <script>
@@ -21,18 +21,15 @@
         names: function(objs) {
             if (objs) {
                 return objs.map(function(obj) {
-                    return obj.name;
+                    return obj.text;
                 }).join(", ");
             }
             return null;
         },
 
         highlightChanged: function() {
-            var title = this.bgColor(this.item.title);
-            this.injectBoundHTML(title, this.$.title);
-
-            var description = this.bgColor(this.item.description);
-            this.injectBoundHTML(description, this.$.description);
+            var text = this.bgColor(this.item.text);
+            this.injectBoundHTML(text, this.$.description);
         },
 
         bgColor: function(value) {

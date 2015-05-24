@@ -29,8 +29,7 @@
             var items = this.items || [];
 
             this.filtered = items.filter(function(elem) {
-                return elem.title.match(re) != null
-                    || elem.description.match(re) != null;
+                return elem.text.match(re) != null;
             });
         }
     });
