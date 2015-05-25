@@ -17,7 +17,6 @@ func SearchHandler(token string) http.Handler {
 			return
 		}
 
-		println(query)
 		body, err := fetchQuery(query, token)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
