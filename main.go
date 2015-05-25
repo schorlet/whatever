@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	. "./backend"
 )
 
 func main() {
