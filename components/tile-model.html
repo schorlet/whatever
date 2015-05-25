@@ -16,6 +16,7 @@
         },
 
         doSearch: function(detail) {
+            detail = detail.replace(/"/g, "%22");
             this.$.ajax.params = '{"q": "' + detail + '"}';
             this.$.ajax.go();
         },
@@ -25,7 +26,7 @@
         },
 
         handleError: function(event, detail) {
-            console.log(detail);
+            console.error(detail);
             this.items = [];
         }
     });

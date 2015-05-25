@@ -6,18 +6,36 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 )
 
 func main() {
-	args := arguments()
-	key, secret := credentials()
+	client := flag.Bool("client", false, "start client")
+	server := flag.Bool("server", false, "start server")
+	flag.Parse()
 
+	if flag.NFlag() != 1 {
+		fmt.Println("go run main.go [-server | -client args]")
+		os.Exit(1)
+	}
+
+	key, secret := credentials()
 	token, err := GetToken(key, secret)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if *client {
+		runClient(token)
+	} else if *server {
+		runServer(token)
+	}
+}
+
+func runClient(token string) {
+	args := clientArgs()
 
 	query := strings.Join(args, " ")
 	tweets, err := Search(query, token)
@@ -35,8 +53,16 @@ func main() {
 	out.WriteTo(os.Stdout)
 }
 
-func arguments() (args []string) {
-	flag.Parse()
+func runServer(token string) {
+	handler := NewAppHandler(token)
+
+	var err = http.ListenAndServe(":8000", handler)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func clientArgs() (args []string) {
 	args = flag.Args()
 
 	if len(args) == 0 {
