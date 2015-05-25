@@ -4,8 +4,12 @@ This is the source code of my participation to the [Knowledge Plaza Backend Chal
 
 ##Introduction
 
-This application connects to Twitter using [Application-only authentication](https://dev.twitter.com/oauth/application-only). So you have to run it with your own credentials.
+This application connects to Twitter using [Application-only authentication](https://dev.twitter.com/oauth/application-only).
+
+So you have to run it with your own credentials.
+
 You can obtain your consumer key and secret by creating a new app on [apps.twitter.com](https://apps.twitter.com/).
+
 
 Then you have to set the value of the environment variables:
 
@@ -14,11 +18,13 @@ $ export CONSUMER_KEY="Your consumer key"
 $ export CONSUMER_SECRET="Your consumer secret"
 ```
 
+
 The application can be started in two different modes, client or server:
 
 - The client mode allows you to perform a search on twitter and display the results in the console standard output.
 
 - The server mode starts a webapp and provides a web UI.
+
 
 ##Run the client
 
@@ -59,6 +65,7 @@ You should see:
     },
     ...
 ```
+
 
 ##Run the server
 
