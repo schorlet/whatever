@@ -8,29 +8,6 @@ import (
 	"net/url"
 )
 
-var BaseUrl = "https://api.twitter.com"
-
-type Status struct {
-	Text      string `json:"text"`
-	Retweets  int    `json:"retweet_count"`
-	Favorites int    `json:"favorite_count"`
-	User      struct {
-		Name       string `json:"name"`
-		ScreenName string `json:"screen_name"`
-	} `json:"user"`
-	Retweet struct {
-		User struct {
-			Name       string `json:"name"`
-			ScreenName string `json:"screen_name"`
-		} `json:"user"`
-	} `json:"retweeted_status"`
-	Entities struct {
-		Tags []struct {
-			Text string `json:"text"`
-		} `json:"hashtags"`
-	} `json:"entities"`
-}
-
 func Search(query, token string) (statuses []Status, err error) {
 	body, err := fetchQuery(query, token)
 	if err != nil {
