@@ -19,18 +19,11 @@ $ export CONSUMER_SECRET="Your consumer secret"
 ```
 
 
-The application can be started in two different modes, client or server:
-
-- The client mode allows you to perform a search on twitter and display the results in the console standard output.
-
-- The server mode starts a webapp and provides a web UI.
-
-
 ##Run the client
 
 ```sh
 # start the client
-$ go run main.go -client "#Arduino"
+$ go run client.go "#Arduino"
 ```
 
 You should see:
@@ -74,7 +67,7 @@ You should see:
 $ bower install
 
 # start the webapp
-$ go run main.go -server
+$ go run server.go
 ```
 
 Go to [http://localhost:8000/](http://localhost:8000/) to run the web UI.
