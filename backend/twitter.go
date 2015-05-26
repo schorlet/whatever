@@ -2,11 +2,23 @@ package backend
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"strings"
 	"time"
 )
 
 var BaseUrl = "https://api.twitter.com"
+
+func Credentials() (key, secret string) {
+	key = os.Getenv("CONSUMER_KEY")
+	secret = os.Getenv("CONSUMER_SECRET")
+
+	if key == "" || secret == "" {
+		log.Fatal("main: missing consumer credentials")
+	}
+	return
+}
 
 type Status struct {
 	Text      string    `json:"text"`
